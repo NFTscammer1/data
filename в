@@ -1,0 +1,9 @@
+roxy = None
+
+        starry = StarryNift(key=private_key, referral_link=config.REF_LINK, bnb_rpc=config.BNB_RPC, proxy=proxy)
+        if await starry.login():
+            if not await starry.check_minted_pass():
+                await starry.mint_pass(logger=logger, thread=thread, gas_price=config.MINT_GWEI)
+
+            time_to_claim = await starry.get_daily_claim_time()
+            if time_to_claim == 0:
